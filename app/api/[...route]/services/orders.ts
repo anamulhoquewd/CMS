@@ -186,7 +186,7 @@ export const registerOrderService = async (body: {
             {
               name: "date",
               message: `Order already exists for this date ${format(
-                date,
+                new Date(date),
                 "yyyy-MM-dd"
               )}`,
             },
@@ -399,9 +399,7 @@ export const getOrdersCountService = async ({ id }: { id: string | null }) => {
           data: { totalOrders },
         },
       };
-    } 
-
-
+    }
 
     // 1. Today's range (start and end of day)
     const todayStart = startOfDay(new Date());
@@ -468,7 +466,6 @@ export const getOrdersCountService = async ({ id }: { id: string | null }) => {
       currentYearOrders,
       prevYearOrders
     );
-
 
     return {
       success: {
