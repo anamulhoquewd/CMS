@@ -70,7 +70,7 @@ const userRegistrationFormSchema = z.object({
     message: "NID must be either 10 or 17 digits",
   }),
   role: z.enum(["admin", "manager"]),
-  active: z.boolean().optional().default(true),
+  active: z.boolean(),
 });
 
 const customerRegistrationFormSchema = z.object({
@@ -89,14 +89,14 @@ const customerRegistrationFormSchema = z.object({
     .number()
     .int()
     .positive({ message: "Quantity must be a positive integer" }),
-  defaultOffDays: z.array(z.string()).default([]),
+  defaultOffDays: z.array(z.string()).optional(),
   paymentStatus: z.enum(["paid", "partially_paid", "pending"], {
     required_error: "Please select a payment status",
   }),
   paymentSystem: z.enum(["weekly", "monthly"], {
     required_error: "Please select a payment system",
   }),
-  active: z.boolean().optional().default(true),
+  active: z.boolean(),
 });
 
 const orderRegistrationFormSchema = z.object({
