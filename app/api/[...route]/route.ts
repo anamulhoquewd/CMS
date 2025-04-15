@@ -38,7 +38,7 @@ app.use("*", logger(), prettyJSON());
 // 🔹 Cors
 app.use(
   cors({
-    origin: DOMAIN, // Your frontend URL
+    origin: process.env.VERCEL_URL || DOMAIN, // Your frontend URL
     credentials: true, // Allow cookies
     allowMethods: ["GET", "POST", "PUT", "PATCH", "DELETE"], // Ensure OPTIONS is handled
     allowHeaders: ["Content-Type", "Authorization"], // Allow necessary headers
