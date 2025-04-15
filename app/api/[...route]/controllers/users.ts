@@ -235,7 +235,7 @@ const loginUser = async (c: Context) => {
         process.env.NODE_ENV === "production"
           ? new URL(`https://${process.env.VERCEL_URL}`).hostname
           : undefined,
-      maxAge: 60 * 60 * 24 * 7 * 1000,
+      maxAge: 604800,
     }
   );
 
