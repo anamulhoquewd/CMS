@@ -228,17 +228,14 @@ const loginUser = async (c: Context) => {
     response.success.tokens.refreshToken,
     JWT_REFRESH_SECRET,
     {
-      path: "/",
+      httpOnly: true,
       secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
       domain:
         process.env.NODE_ENV === "production"
-          ? new URL(`https://${process.env.VERCEL_URL}`).hostname || "localhost"
+          ? new URL(`https://${process.env.VERCEL_URL}`).hostname
           : undefined,
-      httpOnly: true,
-      // Set the cookie to expire in 7 days
-      maxAge: 60 * 60 * 24 * 7,
-      expires: new Date(Date.now() + 60 * 60 * 24 * 7),
-      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+      maxAge: 60 * 60 * 24 * 7 * 1000,
     }
   );
 
@@ -311,7 +308,7 @@ const logout = async (c: Context) => {
       secure: process.env.NODE_ENV === "production",
       domain:
         process.env.NODE_ENV === "production"
-          ? new URL(`https://${process.env.VERCEL_URL}`).hostname || "localhost"
+          ? new URL(`https://${process.env.VERCEL_URL}`).hostname
           : undefined,
     });
 
