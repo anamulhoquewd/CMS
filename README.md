@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# cms
-CMS - UI — A clean and responsive frontend interface built with Next.js and Tailwind CSS to manage catering businesses. Includes role-based dashboards for admins and managers.  CMS - API — A RESTful API built with Node.js, Hono, and MongoDB to handle authentication, user roles, orders, customers, and payments for catering services.
-=======
 # CMS - Catering Management System
 
 A simple yet powerful CMS application built for home catering businesses.  
@@ -129,4 +125,5 @@ Currently, this is a solo project. But if you’d like to contribute or suggest 
 ---
 
 **_Thank you for visiting this project and I hope you find it useful!_**
->>>>>>> master
+
+> > > > > > > master

@@ -2,13 +2,10 @@
 import { getStorage, removeStorage, setStorage } from "@/store/local";
 import axios from "axios";
 
-const DOMAIN = process.env.DOMAIN || "http://localhost:3000";
-const BASE_PATH = process.env.BASE_PATH || "/api/v1";
+const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN || "http://localhost:3200";
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "/api/v1";
 
-const baseURL =
-  process.env.NODE_ENV === "production"
-    ? `${DOMAIN}${BASE_PATH}`
-    : `${DOMAIN}${BASE_PATH}`;
+const baseURL = `${DOMAIN}${BASE_PATH}`;
 
 const api = axios.create({
   baseURL,
