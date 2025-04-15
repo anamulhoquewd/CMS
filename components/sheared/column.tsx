@@ -470,7 +470,7 @@ const paymentColumns = ({
         };
         return (
           <Popover>
-            <PopoverTrigger asChild>
+            <PopoverTrigger>
               <Button variant="outline">View Details</Button>
             </PopoverTrigger>
             <PopoverContent className="w-80">

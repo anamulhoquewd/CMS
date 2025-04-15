@@ -193,7 +193,7 @@ export default function RegistrationForm({
             <FormItem>
               <FormLabel>Default Off Days</FormLabel>
               <Popover open={daysPopoverOpen} onOpenChange={setDaysPopoverOpen}>
-                <PopoverTrigger asChild>
+                <PopoverTrigger>
                   <Button
                     variant="outline"
                     role="combobox"
