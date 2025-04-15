@@ -230,7 +230,10 @@ const loginUser = async (c: Context) => {
     {
       path: "/",
       secure: process.env.NODE_ENV === "production",
-      domain: process.env.NODE_ENV === "production" ? "vercel.com" : undefined,
+      domain:
+        process.env.NODE_ENV === "production"
+          ? process.env.NEXT_PUBLIC_DOMAIN || "localhost:3000"
+          : undefined,
       httpOnly: true,
       // Set the cookie to expire in 7 days
       maxAge: 60 * 60 * 24 * 7,
@@ -308,7 +311,7 @@ const logout = async (c: Context) => {
       secure: process.env.NODE_ENV === "production",
       domain:
         process.env.NODE_ENV === "production"
-          ? "hono-nextjs-tau-ebon.vercel.app"
+          ? process.env.NEXT_PUBLIC_DOMAIN || "localhost:3000"
           : undefined,
     });
 
