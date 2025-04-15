@@ -21,6 +21,12 @@
 .DS_Store
 *.pem
 
+<<<<<<< HEAD
+=======
+# VS Code
+.vscode
+
+>>>>>>> master
 # debug
 npm-debug.log*
 yarn-debug.log*
