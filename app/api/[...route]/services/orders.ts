@@ -185,10 +185,7 @@ export const registerOrderService = async (body: {
           fields: [
             {
               name: "date",
-              message: `Order already exists for this date ${format(
-                new Date(date),
-                "yyyy-MM-dd"
-              )}`,
+              message: `Order already exists for this date`,
             },
           ],
         },

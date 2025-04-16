@@ -248,6 +248,8 @@ const refreshToken = async (c: Context) => {
     // Get refresh token from cookie
     const rToken = await getSignedCookie(c, JWT_REFRESH_SECRET, "refreshToken");
 
+    console.log("Refresh token: ", rToken);
+
     if (!rToken) {
       return authenticationError(c);
     }

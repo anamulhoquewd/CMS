@@ -76,7 +76,7 @@ const useOrder = () => {
         params: {
           page,
           search,
-          date: fromDate && toDate ? "" : format(date, "yyyy-MM-dd"),
+          date: fromDate && toDate ? "" : format(new Date(date), "yyyy-MM-dd"),
           fromDate,
           toDate,
           sortBy: "date",
@@ -150,7 +150,7 @@ const useOrder = () => {
     try {
       const response = await api.post("/orders", {
         customerId: form.getValues().customerId,
-        date: format(selectDate, "yyyy-MM-dd"),
+        date: format(new Date(form.getValues().date), "yyyy-MM-dd"),
 
         ...(form.getValues().item && { item: form.getValues().item }),
         ...(form.getValues().price && { price: form.getValues().price }),
@@ -304,7 +304,7 @@ const useOrder = () => {
         .filter((order: OrderSchema) => {
           // Check if the order date matches the selected date
           return (
-            format(order.date, "yyyy-MM-dd") ===
+            format(new Date(order.date), "yyyy-MM-dd") ===
             format(
               new Date(
                 selectDate.getFullYear(),

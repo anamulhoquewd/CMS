@@ -90,7 +90,7 @@ function OrderCardHeader({
             >
               <CalendarIcon className="mr-2 h-2 w-2 hidden sm:block" />
               {selectDate ? (
-                format(selectDate, "PPP")
+                format(new Date(selectDate), "PPP")
               ) : (
                 <span>Pick a date</span>
               )}
@@ -114,7 +114,7 @@ function OrderCardHeader({
         {/* filter with date range */}
         <div className="flex items-center justify-between w-fit gap-8 sm:gap-2">
           <Popover>
-            <PopoverTrigger >
+            <PopoverTrigger>
               <Button
                 id="date"
                 variant={"outline"}
@@ -141,10 +141,10 @@ function OrderCardHeader({
                 onSelect={(range) =>
                   setDateRange({
                     from: range?.from
-                      ? new Date(format(range.from, "yyyy-MM-dd"))
+                      ? new Date(format(new Date(range.from), "yyyy-MM-dd"))
                       : undefined,
                     to: range?.to
-                      ? new Date(format(range.to, "yyyy-MM-dd"))
+                      ? new Date(format(new Date(range.to), "yyyy-MM-dd"))
                       : undefined,
                   })
                 }
