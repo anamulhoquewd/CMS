@@ -23,14 +23,11 @@ const userSchemaZod = z.object({
     .enum(["pending", "paid", "partially_paid", "on_hold", "rejected"])
     .default("pending"),
   avatar: z.string().optional(),
-  refresh: z.string().optional(),
+  refreshTokens: z.array(z.string()).optional(),
   resetPasswordToken: z.string().nullish(),
   resetPasswordExpireDate: z.date().nullish(),
   active: z.boolean().default(true),
 });
-
-// 🔹 Mongoose Schema
-export interface IUser extends z.infer<typeof userSchemaZod> {}
 
 // 🔹 Mongoose Document
 export interface IUserDoc extends Document {
@@ -43,7 +40,7 @@ export interface IUserDoc extends Document {
   role: "admin" | "manager" | "super_admin";
   salaryStatus: "pending" | "paid" | "partially_paid" | "on_hold" | "rejected";
   avatar?: string;
-  refresh?: string;
+  refreshTokens?: string[];
   resetPasswordToken?: string | null;
   resetPasswordExpireDate?: Date | null;
   active: boolean;
@@ -72,7 +69,7 @@ const userSchema = new Schema<IUserDoc>(
     },
     avatar: { type: String },
     active: { type: Boolean, default: true, required: true },
-    refresh: { type: String },
+    refreshTokens: { type: [String], default: [] },
     resetPasswordToken: { type: String },
     resetPasswordExpireDate: { type: Date },
   },

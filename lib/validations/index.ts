@@ -111,7 +111,7 @@ const orderRegistrationFormSchema = z.object({
 const paymentRegistrationFormSchema = z.object({
   customerId: z.string().length(24, "Please Select a customer"),
   amount: z.number().min(0),
-  paymentMethod: z.enum(["cash", "bank", "bkash", "nagad", ""]),
+  paymentMethod: z.enum(["cash", "bank", "bkash", "nagad", ""]).optional(),
   cashReceivedBy: z.string().optional(),
   transactionId: z.string().optional(),
   bkashNumber: z.string().optional(),

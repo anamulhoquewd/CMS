@@ -682,7 +682,15 @@ export const loginService = async (body: {
     const refreshToken = await generateRefreshToken({ user });
 
     // Refresh token store in database
-    user.refresh = refreshToken;
+    if (!user.refreshTokens.includes(refreshToken)) {
+      user.refreshTokens.push(refreshToken);
+    }
+
+    // Remove old refresh tokens
+    if (user.refreshTokens.length > 5) {
+      user.refreshTokens = user.refreshTokens.slice(-5); // last 5 tokens
+    }
+
     await user.save();
 
     // Response

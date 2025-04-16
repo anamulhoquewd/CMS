@@ -214,7 +214,18 @@ const useCustomer = () => {
       console.log("Customer updated successfully");
 
       // Reset form
-      form.reset();
+      form.reset({
+        name: "",
+        phone: "",
+        address: "",
+        defaultPrice: 0,
+        defaultQuantity: 1,
+        defaultOffDays: [],
+        paymentStatus: "pending",
+        defaultItem: "lunch",
+        paymentSystem: "weekly",
+        active: true,
+      });
 
       // Close modal
       setIsAddOpen(false);

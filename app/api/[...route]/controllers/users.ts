@@ -248,8 +248,6 @@ const refreshToken = async (c: Context) => {
     // Get refresh token from cookie
     const rToken = await getSignedCookie(c, JWT_REFRESH_SECRET, "refreshToken");
 
-    console.log("Refresh token: ", rToken);
-
     if (!rToken) {
       return authenticationError(c);
     }
@@ -262,7 +260,7 @@ const refreshToken = async (c: Context) => {
     }
 
     // Check if refresh token is valid
-    const user = await User.findOne({ refresh: rToken });
+    const user = await User.findOne({ refreshTokens: { $in: [rToken] } });
 
     if (!user) {
       return authorizationError(c, "Forbidden");
@@ -324,11 +322,28 @@ const logout = async (c: Context) => {
       return authenticationError(c, "Invalid refresh token on the cookie");
     }
 
-    // Remove refresh token from database
-    const user = await User.updateOne({ _id: payload.id }, { refresh: "" });
+    const token = refreshToken.split(".").splice(0, 3).join(".");
 
-    if (!user) {
-      return authenticationError(c);
+    // Remove refresh token from database
+    const result = await User.updateOne(
+      { _id: payload.id },
+      {
+        $pull: {
+          refreshTokens: token,
+        },
+      }
+    );
+
+    if (result.matchedCount === 0 || result.modifiedCount === 0) {
+      return authenticationError(c); // 401 Unauthorized
+    }
+
+    if (result.matchedCount === 0) {
+      console.warn("User not found during refresh token removal");
+    }
+
+    if (result.modifiedCount === 0) {
+      console.warn("Refresh token not found in user's token list");
     }
 
     // Response

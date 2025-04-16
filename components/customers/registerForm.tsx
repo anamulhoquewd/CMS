@@ -198,6 +198,7 @@ export default function RegistrationForm({
                     variant="outline"
                     role="combobox"
                     aria-expanded={daysPopoverOpen}
+                    type="button"
                     className="w-full font-medium justify-between cursor-pointer"
                   >
                     {field.value.length > 0

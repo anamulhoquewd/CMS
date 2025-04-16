@@ -1,4 +1,4 @@
-import { CustomerSchema, Pagination ,PaymentSchema} from "@/interface";
+import { CustomerSchema, Pagination, PaymentSchema } from "@/interface";
 import { paymentRegistrationFormSchema } from "@/lib/validations";
 import api from "@/protectedApi/Interceptor";
 import { defaultPagination } from "@/utils/default";
@@ -41,7 +41,6 @@ const usePayment = () => {
         params: {
           page,
         },
-       
       });
 
       if (!response.data.success) {
@@ -69,7 +68,7 @@ const usePayment = () => {
 
   const getPaymentsCount = async () => {
     try {
-      const response = await api.get("/payments/count",);
+      const response = await api.get("/payments/count");
 
       if (!response.data.success) {
         throw new Error(response.data.error.message);
@@ -103,29 +102,25 @@ const usePayment = () => {
     setIsLoading(true);
 
     try {
-      const response = await api.post(
-        "/payments",
-        {
-          amount: form.getValues().amount,
-          note: form.getValues().note,
-          transactionId: form.getValues().transactionId,
-          customerId: form.getValues().customerId,
-          paymentMethod: form.getValues().paymentMethod,
-          ...(form.getValues().bkashNumber && {
-            bkashNumber: form.getValues().bkashNumber,
-          }),
-          ...(form.getValues().nagadNumber && {
-            nagadNumber: form.getValues().nagadNumber,
-          }),
-          ...(form.getValues().bankName && {
-            bankName: form.getValues().bankName,
-          }),
-          ...(form.getValues().cashReceivedBy && {
-            cashReceivedBy: form.getValues().cashReceivedBy,
-          }),
-        },
-       
-      );
+      const response = await api.post("/payments", {
+        amount: form.getValues().amount,
+        note: form.getValues().note,
+        transactionId: form.getValues().transactionId,
+        customerId: form.getValues().customerId,
+        paymentMethod: form.getValues().paymentMethod,
+        ...(form.getValues().bkashNumber && {
+          bkashNumber: form.getValues().bkashNumber,
+        }),
+        ...(form.getValues().nagadNumber && {
+          nagadNumber: form.getValues().nagadNumber,
+        }),
+        ...(form.getValues().bankName && {
+          bankName: form.getValues().bankName,
+        }),
+        ...(form.getValues().cashReceivedBy && {
+          cashReceivedBy: form.getValues().cashReceivedBy,
+        }),
+      });
 
       if (!response.data.success) {
         throw new Error(response.data.error.message);
@@ -175,8 +170,116 @@ const usePayment = () => {
     }
   };
 
-  const updatePayment = async () => {};
-  const deletePayment = async () => {};
+  const updatePayment = async () => {
+    // Loading spinner start
+    setIsLoading(true);
+
+    console.log("Form Values: ", form.getValues());
+
+    try {
+      const response = await api.put(`/payments/${paymentId}`, {
+        amount: form.getValues().amount,
+        note: form.getValues().note,
+        paymentMethod: form.getValues().paymentMethod,
+        ...(form.getValues().bkashNumber && {
+          bkashNumber: form.getValues().bkashNumber,
+        }),
+        ...(form.getValues().nagadNumber && {
+          nagadNumber: form.getValues().nagadNumber,
+        }),
+        ...(form.getValues().bankName && {
+          bankName: form.getValues().bankName,
+        }),
+        ...(form.getValues().cashReceivedBy && {
+          cashReceivedBy: form.getValues().cashReceivedBy,
+        }),
+      });
+
+      if (!response.data.success) {
+        throw new Error(response.data.error.message);
+      }
+
+      console.log("Payment updated successfully");
+
+      // Reset form
+      form.reset({
+        customerId: "",
+        amount: 0,
+        note: "",
+        transactionId: "",
+        bkashNumber: "",
+        nagadNumber: "",
+        bankName: "",
+        cashReceivedBy: "",
+        paymentMethod: "",
+      });
+
+      // Close modal
+      setIsAddOpen(false);
+
+      // Update editing status
+      setIsEditing(false);
+
+      // Remove values
+      setDefaultValues(null);
+
+      // Update order ID
+      setPaymentId(null);
+
+      // Update users table
+      getPayments();
+    } catch (error: any) {
+      handleAxiosError(error);
+      console.log("Error while updating order", error);
+
+      // Set error message
+      // Set form errors
+      if (error.response && error.response.data) {
+        const res = error.response.data;
+
+        if (res.fields) {
+          // Set form errors
+          res.fields.forEach((field: any) => {
+            form.setError(field.name as any, {
+              message: field.message,
+            });
+          });
+        }
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const deletePayment = async () => {
+    // Loading spinner start
+    setIsLoading(true);
+
+    try {
+      const response = await api.delete(`/payments/${paymentId}`);
+
+      if (!response.data.success) {
+        throw new Error(response.data.error.message);
+      }
+
+      console.log("Order deleted successfully");
+
+      // Close delete modal
+      setIsDelOpen(false);
+
+      // Update order ID
+      setPaymentId(null);
+
+      // Update users table
+      getPayments();
+    } catch (error: any) {
+      handleAxiosError(error);
+      console.log("Error while deleting order", error);
+    } finally {
+      // Loading spinner end
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
     getPayments(pagination.page);

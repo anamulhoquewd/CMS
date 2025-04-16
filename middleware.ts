@@ -11,8 +11,8 @@ export async function middleware(request: NextRequest) {
   // Allow unauthenticated access to auth routes
   if (pathname.startsWith("/auth")) {
     if (token) {
-      const { exp } = decodeJwtPayload(token);
-      if (exp < Date.now() / 1000) {
+      const decoded = decodeJwtPayload(token as string);
+      if (decoded?.exp < Date.now() / 1000) {
         return NextResponse.next(); // let them access auth route if token expired
       }
       return NextResponse.redirect(new URL("/", request.url));
@@ -45,6 +45,6 @@ function redirectToLogin(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|api/|auth/sign-in|auth/forgot-password|auth/reset-password/|.*\\..*$).*)",
+    "/((?!_next/static|_next/image|favicon.ico|api/|auth/forgot-password|auth/reset-password/|.*\\..*$).*)",
   ],
 };

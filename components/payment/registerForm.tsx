@@ -50,49 +50,66 @@ export default function RegistrationForm({
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-6 w-full px-1"
       >
-        <FormField
-          control={form.control}
-          name="customerId"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Customer</FormLabel>
-              <Select
-                onValueChange={(value) => {
-                  setSelectedCustomer(
-                    customerIds.find(
-                      (customer) => customer._id === value
-                    ) as CustomerSchema
-                  );
-                  field.onChange(value);
-                }}
-                disabled={isEditing}
-                defaultValue={field.value}
-              >
-                <FormControl className="w-full cursor-pointer">
-                  <SelectTrigger>
-                    <SelectValue
-                      placeholder={`${
-                        isEditing ? values.customerName : "Select a customer"
-                      }`}
-                    />
-                  </SelectTrigger>
+        {isEditing ? (
+          <FormField
+            control={form.control}
+            name="name"
+            disabled
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="cursor-pointer">Name</FormLabel>
+                <FormControl>
+                  <Input disabled {...field} />
                 </FormControl>
-                <SelectContent>
-                  {customerIds.map((customer) => (
-                    <SelectItem
-                      className="cursor-pointer"
-                      key={customer._id}
-                      value={customer._id}
-                    >
-                      {customer.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        ) : (
+          <FormField
+            control={form.control}
+            name="customerId"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Customer</FormLabel>
+                <Select
+                  onValueChange={(value) => {
+                    setSelectedCustomer(
+                      customerIds.find(
+                        (customer) => customer._id === value
+                      ) as CustomerSchema
+                    );
+                    field.onChange(value);
+                  }}
+                  disabled={isEditing}
+                  defaultValue={field.value}
+                >
+                  <FormControl className="w-full cursor-pointer">
+                    <SelectTrigger>
+                      <SelectValue
+                        placeholder={`${
+                          isEditing ? values.customerName : "Select a customer"
+                        }`}
+                      />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {customerIds.map((customer) => (
+                      <SelectItem
+                        className="cursor-pointer"
+                        key={customer._id}
+                        value={customer._id}
+                      >
+                        {customer.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        )}
         <FormField
           control={form.control}
           name="amount"
@@ -114,40 +131,47 @@ export default function RegistrationForm({
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="paymentMethod"
-          render={({ field }) => (
-            <FormItem className="w-full">
-              <FormLabel className="cursor-pointer">Methods</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl className="w-full">
-                  <SelectTrigger className="cursor-pointer">
-                    <SelectValue
-                      placeholder={`${field.value || "Select an item"}`}
-                    />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  <SelectItem className="cursor-pointer" value="cash">
-                    Cash
-                  </SelectItem>
-                  <SelectItem className="cursor-pointer" value="bank">
-                    Bank
-                  </SelectItem>
-                  <SelectItem className="cursor-pointer" value="bkash">
-                    Bkash
-                  </SelectItem>
-                  <SelectItem className="cursor-pointer" value="nagad">
-                    Nagad
-                  </SelectItem>
-                </SelectContent>
-              </Select>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
+        {isEditing || (
+          <FormField
+            control={form.control}
+            name="paymentMethod"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormLabel className="cursor-pointer">Methods</FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl className="w-full">
+                    <SelectTrigger className="cursor-pointer">
+                      <SelectValue
+                        placeholder={`${
+                          form.getValues()?.transactionDetails?.paymentMethod ||
+                          "Select an item"
+                        }`}
+                      />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem className="cursor-pointer" value="cash">
+                      Cash
+                    </SelectItem>
+                    <SelectItem className="cursor-pointer" value="bank">
+                      Bank
+                    </SelectItem>
+                    <SelectItem className="cursor-pointer" value="bkash">
+                      Bkash
+                    </SelectItem>
+                    <SelectItem className="cursor-pointer" value="nagad">
+                      Nagad
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        )}
         {form.watch("paymentMethod") === "cash" && (
           <FormField
             control={form.control}

@@ -37,14 +37,12 @@ api.interceptors.response.use(
         }
 
         removeStorage("accessToken");
-        // window.location.href = "/auth/sign-in";
 
         return Promise.reject(new Error("Session expired please login again"));
       } catch (refreshError) {
         // console.error("Failed to refresh token", refreshError);
 
         removeStorage("accessToken");
-        // window.location.href = "/auth/sign-in";
 
         return Promise.reject(refreshError);
       }
