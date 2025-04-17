@@ -29,6 +29,7 @@ import {
 
 const JWT_REFRESH_SECRET =
   (process.env.JWT_REFRESH_SECRET as string) || "refresh";
+const DOMAIN_NAME = process.env.DOMAIN_NAME as string;
 
 // 🔹 Get all users
 const getUsers = async (c: Context) => {
@@ -231,10 +232,7 @@ const loginUser = async (c: Context) => {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
-      domain:
-        process.env.NODE_ENV === "production"
-          ? "jolchowki-cms.vercel.app"
-          : undefined,
+      domain: process.env.NODE_ENV === "production" ? DOMAIN_NAME : undefined,
       maxAge: 604800,
     }
   );
@@ -306,10 +304,7 @@ const logout = async (c: Context) => {
     const refreshToken = deleteCookie(c, "refreshToken", {
       path: "/",
       secure: process.env.NODE_ENV === "production",
-      domain:
-        process.env.NODE_ENV === "production"
-          ? "jolchowki-cms.vercel.app"
-          : undefined,
+      domain: process.env.NODE_ENV === "production" ? DOMAIN_NAME : undefined,
     });
 
     if (!refreshToken) {
