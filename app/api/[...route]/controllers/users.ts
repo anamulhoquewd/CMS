@@ -29,7 +29,7 @@ import {
 
 const JWT_REFRESH_SECRET =
   (process.env.JWT_REFRESH_SECRET as string) || "refresh";
-const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN || "http://localhost:3200";
+const DOMAIN = process.env.VERCEL_URL || process.env.NEXT_PUBLIC_DOMAIN || "http://localhost:3200";
 
 // 🔹 Get all users
 const getUsers = async (c: Context) => {
