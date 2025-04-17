@@ -233,7 +233,7 @@ const loginUser = async (c: Context) => {
       sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
       domain:
         process.env.NODE_ENV === "production"
-          ? process.env.VERCEL_URL
+          ? "jolchowki-cms.vercel.app"
           : undefined,
       maxAge: 604800,
     }
@@ -308,7 +308,7 @@ const logout = async (c: Context) => {
       secure: process.env.NODE_ENV === "production",
       domain:
         process.env.NODE_ENV === "production"
-          ? process.env.VERCEL_URL
+          ? "jolchowki-cms.vercel.app"
           : undefined,
     });
 
