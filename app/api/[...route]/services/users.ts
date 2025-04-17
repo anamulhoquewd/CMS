@@ -36,7 +36,7 @@ const AWS_SECRET_ACCESS_KEY =
 
 // Get Domain from env
 const DOMAIN =
-  process.env.VERCEL_URL ||
+  process.env.VERCEL_URL && `https://${process.env.VERCEL_URL}` ||
   process.env.NEXT_PUBLIC_DOMAIN ||
   "http://localhost:3200";
 
