@@ -34,8 +34,8 @@ const AWS_ACCESS_KEY_ID =
 const AWS_SECRET_ACCESS_KEY =
   (process.env.AWS_SECRET_ACCESS_KEY as string) || "12345678";
 
-// Get environment variables
-const DOMAIN = process.env.DOMAIN;
+// Get Domain from env
+const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN;
 
 // Create Email Transporter config
 const transporter = nodemailer.createTransport({

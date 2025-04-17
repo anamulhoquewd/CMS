@@ -28,17 +28,11 @@ import Link from "next/link";
 import useReset from "../../hooks/auth/useReset";
 import SuccessComponent from "./resetSuccess";
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-
 export function ResetPasswordForm() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const key = usePathname().split("/").pop() as string;
-
-  const { form, onSubmit } = useReset();
+  const { form, onSubmit, isLoading, isSuccess } = useReset();
 
   if (isSuccess) {
     return <SuccessComponent />;
@@ -55,9 +49,7 @@ export function ResetPasswordForm() {
       <CardContent>
         <Form {...form}>
           <form
-            onSubmit={form.handleSubmit((data) =>
-              onSubmit(data, { baseUrl, setIsLoading, setIsSuccess, key })
-            )}
+            onSubmit={form.handleSubmit((data) => onSubmit(data))}
             className="space-y-6"
           >
             <div className="relative">
@@ -148,10 +140,10 @@ export function ResetPasswordForm() {
               {isLoading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Signing in...
+                  Resetting...
                 </>
               ) : (
-                "Sign In"
+                "Reset Password"
               )}
             </Button>
           </form>

@@ -1,8 +1,11 @@
 import api from "@/protectedApi/Interceptor";
 import { removeStorage } from "@/store/local";
 import { useCallback } from "react";
+import { useRouter } from "next/navigation";
 
 function useLogout() {
+  const router = useRouter();
+
   const logout = useCallback(async () => {
     try {
       const response = await api.post("/users/auth/logout", null);
@@ -15,7 +18,7 @@ function useLogout() {
       removeStorage("accessToken");
 
       // Redirect to sign in page
-      window.location.href = "/auth/sign-in";
+      router.push("/auth/sign-in");
     } catch (error: any) {
       console.warn(error);
     }

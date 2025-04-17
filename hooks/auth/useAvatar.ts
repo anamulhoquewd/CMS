@@ -7,14 +7,10 @@ const useAvatar = () => {
   const [error, setError] = useState("");
   const [user, setUser] = useState<UserSchema | null>(null);
 
-  // store
-  // const user = useAuth((state) => state.user);
-  // const updateUserData = useAuth((state) => state.update);
-
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await api.get("/auth/me", );
+        const response = await api.get("/auth/me");
 
         if (response.data.success) {
           setUser(response.data.data);
@@ -46,7 +42,6 @@ const useAvatar = () => {
     formData.append("avatar", file);
 
     try {
-
       const response = await api.post(
         `/users/uploads-avatar?filename=${
           user ? user.name.split(" ").join("-") : "user"
@@ -55,7 +50,6 @@ const useAvatar = () => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
-           
           },
         }
       );

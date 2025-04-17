@@ -10,7 +10,7 @@ import { superAdminService } from "./services";
 import { startAutoOrderScheduler } from "./services/orders";
 import { handle } from "hono/vercel";
 
-// export const runtime = "nodejs";
+export const runtime = "nodejs";
 
 const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN || "http://localhost:3200";
 
@@ -38,7 +38,7 @@ app.use("*", logger(), prettyJSON());
 // 🔹 Cors
 app.use(
   cors({
-    origin: "https://cms-git-master-dev-anam.vercel.app", // Your frontend URL
+    origin: process.env.NODE_ENV === "production" ? DOMAIN : "*", // Your frontend URL
     credentials: true, // Allow cookies
     allowMethods: ["GET", "POST", "PUT", "PATCH", "DELETE"], // Ensure OPTIONS is handled
     allowHeaders: ["Content-Type", "Authorization"], // Allow necessary headers

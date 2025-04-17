@@ -3,12 +3,13 @@ import api from "@/protectedApi/Interceptor";
 import { setStorage } from "@/store/local";
 import { handleAxiosError } from "@/utils/error";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 const useLogin = () => {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const redirectTo = searchParams.get("from") || "/dashboard";
   const [isLoading, setIsLoading] = useState(false);
@@ -51,7 +52,7 @@ const useLogin = () => {
       form.reset();
 
       // Redirect to home page
-      window.location.href = redirectTo;
+      router.push(redirectTo);
     } catch (error: any) {
       // Handle error
       handleAxiosError(error);

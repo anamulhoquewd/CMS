@@ -25,8 +25,6 @@ import Link from "next/link";
 import SuccessComponent from "./forgetSuccess";
 import useForgot from "../../hooks/auth/useForgot";
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-
 function ForgotForm() {
   const { form, onSubmit, isLoading, isSuccess, value } = useForgot();
 
