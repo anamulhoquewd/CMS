@@ -35,7 +35,10 @@ const AWS_SECRET_ACCESS_KEY =
   (process.env.AWS_SECRET_ACCESS_KEY as string) || "12345678";
 
 // Get Domain from env
-const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN;
+const DOMAIN =
+  process.env.VERCEL_URL ||
+  process.env.NEXT_PUBLIC_DOMAIN ||
+  "http://localhost:3200";
 
 // Create Email Transporter config
 const transporter = nodemailer.createTransport({
