@@ -29,10 +29,6 @@ import {
 
 const JWT_REFRESH_SECRET =
   (process.env.JWT_REFRESH_SECRET as string) || "refresh";
-const DOMAIN =
-  (process.env.VERCEL_URL && `https://${process.env.VERCEL_URL}`) ||
-  process.env.NEXT_PUBLIC_DOMAIN ||
-  "http://localhost:3200";
 
 // 🔹 Get all users
 const getUsers = async (c: Context) => {
@@ -237,7 +233,7 @@ const loginUser = async (c: Context) => {
       sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
       domain:
         process.env.NODE_ENV === "production"
-          ? new URL(DOMAIN).pathname
+          ? process.env.VERCEL_URL
           : undefined,
       maxAge: 604800,
     }
@@ -312,7 +308,7 @@ const logout = async (c: Context) => {
       secure: process.env.NODE_ENV === "production",
       domain:
         process.env.NODE_ENV === "production"
-          ? new URL(DOMAIN).pathname
+          ? process.env.VERCEL_URL
           : undefined,
     });
 
