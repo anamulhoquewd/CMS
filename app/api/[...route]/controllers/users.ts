@@ -154,6 +154,15 @@ const updateUser = async (c: Context) => {
 
   const body = await c.req.json();
 
+  const user = c.get("user");
+  const isSelfUpdate = user._id.toString() === id.toString();
+
+  if (isSelfUpdate && user.role === "super_admin") {
+    if (body.role && body.role !== "super_admin") {
+      body.role = "super_admin";
+    }
+  }
+
   const response = await updateUserService({ id, body });
 
   if (response.error) {

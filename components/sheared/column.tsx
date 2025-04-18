@@ -95,11 +95,6 @@ const userColumns = ({
       cell: ({ row }) => <div>{row.getValue("address")}</div>,
     },
     {
-      accessorKey: "salaryStatus",
-      header: "Salary Status",
-      cell: ({ row }) => <div>{row.getValue("salaryStatus")}</div>,
-    },
-    {
       accessorKey: "role",
       header: "Role",
       cell: ({ row }) => <div>{row.getValue("role")}</div>,

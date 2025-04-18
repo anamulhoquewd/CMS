@@ -52,8 +52,6 @@ const updateUserBySelfSchema = z.object({
   email: z.string().email().optional(),
   phone: z.string().optional(),
   address: z.string().optional(),
-  NID: z.string().optional(),
-  role: z.string().optional(),
 });
 
 const userRegistrationFormSchema = z.object({
@@ -69,7 +67,7 @@ const userRegistrationFormSchema = z.object({
   NID: z.string().refine((val) => /^\d{10}$|^\d{17}$/.test(val), {
     message: "NID must be either 10 or 17 digits",
   }),
-  role: z.enum(["admin", "manager"]),
+  role: z.enum(["admin", "manager", "super_admin", ""]),
   active: z.boolean(),
 });
 
@@ -79,7 +77,7 @@ const customerRegistrationFormSchema = z.object({
   address: z
     .string()
     .min(5, { message: "Address must be at least 5 characters" }),
-  defaultItem: z.enum(["lunch", "dinner", "lunch&dinner"], {
+  defaultItem: z.enum(["lunch", "dinner", "lunch&dinner", ""], {
     required_error: "Please select a default item",
   }),
   defaultPrice: z.coerce
@@ -90,10 +88,10 @@ const customerRegistrationFormSchema = z.object({
     .int()
     .positive({ message: "Quantity must be a positive integer" }),
   defaultOffDays: z.array(z.string()).optional(),
-  paymentStatus: z.enum(["paid", "partially_paid", "pending"], {
+  paymentStatus: z.enum(["paid", "partially_paid", "pending", ""], {
     required_error: "Please select a payment status",
   }),
-  paymentSystem: z.enum(["weekly", "monthly"], {
+  paymentSystem: z.enum(["weekly", "monthly", ""], {
     required_error: "Please select a payment system",
   }),
   active: z.boolean(),

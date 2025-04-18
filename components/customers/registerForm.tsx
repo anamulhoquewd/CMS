@@ -122,7 +122,9 @@ export default function RegistrationForm({
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl className="w-full">
                   <SelectTrigger className="cursor-pointer">
-                    <SelectValue placeholder="Select default item" />
+                    <SelectValue
+                      placeholder={`${field.value || "Select default item"}`}
+                    />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -254,7 +256,9 @@ export default function RegistrationForm({
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl className="w-full">
                   <SelectTrigger className="cursor-pointer">
-                    <SelectValue placeholder="Select payment status" />
+                    <SelectValue
+                      placeholder={`${field.value || "Select payment status"}`}
+                    />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -283,7 +287,9 @@ export default function RegistrationForm({
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl className="w-full">
                   <SelectTrigger className="cursor-pointer">
-                    <SelectValue placeholder="Select payment system" />
+                    <SelectValue
+                      placeholder={`${field.value || "Select payment system"}`}
+                    />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>

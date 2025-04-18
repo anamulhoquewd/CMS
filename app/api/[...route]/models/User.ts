@@ -19,9 +19,6 @@ const userSchemaZod = z.object({
     message: "NID must be either 10 or 17 digits",
   }),
   role: z.enum(["admin", "manager", "super_admin"]),
-  salaryStatus: z
-    .enum(["pending", "paid", "partially_paid", "on_hold", "rejected"])
-    .default("pending"),
   avatar: z.string().optional(),
   refreshTokens: z.array(z.string()).optional(),
   resetPasswordToken: z.string().nullish(),
@@ -38,7 +35,6 @@ export interface IUserDoc extends Document {
   address?: string;
   NID: string;
   role: "admin" | "manager" | "super_admin";
-  salaryStatus: "pending" | "paid" | "partially_paid" | "on_hold" | "rejected";
   avatar?: string;
   refreshTokens?: string[];
   resetPasswordToken?: string | null;
@@ -61,11 +57,6 @@ const userSchema = new Schema<IUserDoc>(
       type: String,
       required: true,
       enum: ["admin", "manager", "super_admin"],
-    },
-    salaryStatus: {
-      type: String,
-      enum: ["pending", "paid", "partially_paid", "on_hold", "rejected"],
-      default: "pending",
     },
     avatar: { type: String },
     active: { type: Boolean, default: true, required: true },

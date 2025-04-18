@@ -149,9 +149,9 @@ function Index() {
                   defaultPrice: 0,
                   defaultQuantity: 1,
                   defaultOffDays: [],
-                  paymentStatus: "pending",
-                  defaultItem: "lunch",
-                  paymentSystem: "weekly",
+                  paymentStatus: "",
+                  defaultItem: "",
+                  paymentSystem: "",
                   active: true,
                 });
                 setValues(null);

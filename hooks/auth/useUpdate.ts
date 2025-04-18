@@ -17,8 +17,6 @@ const useUpdate = ({ user }: { user: UserSchema | null }) => {
       email: "",
       phone: "",
       address: "",
-      NID: "",
-      role: "",
     },
   });
 
@@ -29,8 +27,6 @@ const useUpdate = ({ user }: { user: UserSchema | null }) => {
         email: user.email,
         phone: user.phone,
         address: user.address,
-        NID: user.NID,
-        role: user.role,
       });
     }
   }, [user, form]);

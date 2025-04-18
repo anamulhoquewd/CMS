@@ -2,7 +2,7 @@ import Index from "@/components/payment";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Payments",
+  title: "Payments Management | Manage and analyze payments",
   description: "Manage and analyze payments",
 };
 

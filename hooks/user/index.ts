@@ -100,7 +100,7 @@ const useUser = () => {
       name: "",
       email: "",
       NID: "",
-      role: "manager",
+      role: "",
       phone: "",
       address: "",
       active: true,
@@ -123,7 +123,7 @@ const useUser = () => {
         name: "",
         email: "",
         NID: "",
-        role: "manager",
+        role: "",
         phone: "",
         address: "",
         active: true,
@@ -172,7 +172,15 @@ const useUser = () => {
       }
 
       // Reset form
-      form.reset();
+      form.reset({
+        name: "",
+        email: "",
+        NID: "",
+        role: "",
+        phone: "",
+        address: "",
+        active: true,
+      });
 
       // Update editing status
       setIsEditing(false);

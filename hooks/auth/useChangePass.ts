@@ -26,10 +26,16 @@ const useChangePass = (onClose: () => void) => {
     try {
       const response = await api.patch("/users/auth/change-password", data);
 
-      if (response.data.success) {
-        form.reset();
-        onClose();
+      if (!response.data.success) {
+        throw new Error(response.data.error.message);
       }
+
+      form.reset({
+        currentPassword: "",
+        newPassword: "",
+        confirmPassword: "",
+      });
+      onClose();
     } catch (error: any) {
       console.error("Error while changing password", error);
 

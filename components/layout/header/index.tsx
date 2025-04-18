@@ -114,21 +114,21 @@ export default function Header() {
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
-                <DropdownMenuItem className="cursor-pointer">
-                  <Link className="flex items-center gap-2" href="/me">
+                <Link className="flex items-center gap-2" href="/me">
+                  <DropdownMenuItem className="cursor-pointer">
                     <CircleUser className="mr-2 h-4 w-4" />
                     <span>Profile</span>
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer">
-                  <Link
-                    className="flex items-center gap-2"
-                    href="/dashboard/settings"
-                  >
+                  </DropdownMenuItem>
+                </Link>
+                <Link
+                  className="flex items-center gap-2"
+                  href="/dashboard/settings"
+                >
+                  <DropdownMenuItem className="cursor-pointer">
                     <Settings className="mr-2 h-4 w-4" />
                     <span>Settings</span>
-                  </Link>
-                </DropdownMenuItem>
+                  </DropdownMenuItem>
+                </Link>
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
               <AlertDialog>

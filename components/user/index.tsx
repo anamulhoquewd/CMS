@@ -139,7 +139,7 @@ function Index() {
                   phone: "",
                   address: "",
                   NID: "",
-                  role: "manager",
+                  role: "",
                   active: true,
                 });
                 setValues(null);

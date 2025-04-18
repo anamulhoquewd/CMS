@@ -358,12 +358,6 @@ export const updateUserService = async ({
     phone: string;
     NID: string;
     address: string;
-    salaryStatus:
-      | "pending"
-      | "paid"
-      | "partially_paid"
-      | "on_hold"
-      | "rejected";
     role: "admin" | "manager";
   };
 }) => {
@@ -383,9 +377,6 @@ export const updateUserService = async ({
       .regex(/^\d{10}$|^\d{17}$/, "NID must be either 10 or 17 digits")
       .optional(),
     address: z.string().max(100).optional(),
-    salaryStatus: z
-      .enum(["pending", "paid", "partially_paid", "on_hold", "rejected"])
-      .optional(),
     role: z.enum(["admin", "manager", "super_admin"]).optional(),
     active: z.boolean().optional(),
   });

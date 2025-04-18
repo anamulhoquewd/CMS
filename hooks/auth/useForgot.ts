@@ -35,7 +35,9 @@ const useForgot = () => {
 
       setIsSuccess(true);
       setValue(response.data.data);
-      form.reset();
+      form.reset({
+        email: "",
+      });
     } catch (error: any) {
       const res = error.response.data;
 

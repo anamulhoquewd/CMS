@@ -49,7 +49,10 @@ const useLogin = () => {
       setStorage("accessToken", accessToken);
 
       // Clear form
-      form.reset();
+      form.reset({
+        email: "",
+        password: "",
+      });
 
       // Redirect to home page
       router.push(redirectTo);

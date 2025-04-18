@@ -124,9 +124,9 @@ const useCustomer = () => {
       defaultPrice: 0,
       defaultQuantity: 1,
       defaultOffDays: [],
-      paymentStatus: "pending",
-      defaultItem: "lunch",
-      paymentSystem: "weekly",
+      paymentStatus: "",
+      defaultItem: "",
+      paymentSystem: "",
       active: true,
     },
   });
@@ -153,9 +153,9 @@ const useCustomer = () => {
         defaultPrice: 0,
         defaultQuantity: 1,
         defaultOffDays: [],
-        paymentStatus: "pending",
-        defaultItem: "lunch",
-        paymentSystem: "weekly",
+        paymentStatus: "",
+        defaultItem: "",
+        paymentSystem: "",
         active: true,
       });
 
@@ -211,9 +211,9 @@ const useCustomer = () => {
         defaultPrice: 0,
         defaultQuantity: 1,
         defaultOffDays: [],
-        paymentStatus: "pending",
-        defaultItem: "lunch",
-        paymentSystem: "weekly",
+        paymentStatus: "",
+        defaultItem: "",
+        paymentSystem: "",
         active: true,
       });
 
