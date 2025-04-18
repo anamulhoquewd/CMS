@@ -99,7 +99,7 @@ function OrderCardHeader({
           <PopoverContent className="w-auto p-0">
             <Calendar
               mode="single"
-              selected={new Date(selectDate)}
+              selected={selectDate}
               onSelect={(date) => date && setSelectDate(date)}
               initialFocus
             />

@@ -14,7 +14,7 @@ function Footer() {
         <span>Terms of Service</span>
         <span>Privacy Policy</span>
         <span>Contact Us</span>
-        <Link target="_blank" href="https://github.com/anamulhoquewd">
+        <Link target="_blank" href="https://github.com/anamulhoquewd/CMS">
           <Button className="cursor-pointer" size={"icon"} variant="outline">
             <Github />
           </Button>

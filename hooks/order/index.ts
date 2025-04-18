@@ -150,7 +150,7 @@ const useOrder = () => {
     try {
       const response = await api.post("/orders", {
         customerId: form.getValues().customerId,
-        date: format(new Date(form.getValues().date), "yyyy-MM-dd"),
+        date: format(new Date(selectDate), "yyyy-MM-dd"),
 
         ...(form.getValues().item && { item: form.getValues().item }),
         ...(form.getValues().price && { price: form.getValues().price }),

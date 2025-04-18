@@ -44,7 +44,7 @@ function UsersTable({ table, columns, setSearch }: UsersTableProps) {
             onChange={(event) => {
               setTimeout(() => {
                 setSearch(event.target.value);
-              }, 2000);
+              }, 250);
             }}
             className="w-full sm:max-w-sm"
           />
@@ -60,7 +60,7 @@ function UsersTable({ table, columns, setSearch }: UsersTableProps) {
         )}
 
         <DropdownMenu>
-          <DropdownMenuTrigger>
+          <DropdownMenuTrigger className="w-fit m-auto md:m-0">
             <Button variant="outline" className="cursor-pointer">
               Columns <ChevronDownIcon />
             </Button>

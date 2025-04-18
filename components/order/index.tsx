@@ -103,59 +103,57 @@ function Index() {
   return (
     <>
       <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-      <StatsCard
-        title="Today's Orders"
-        value={String(ordersCount.todayOrders)}
-        description={`${ordersCount.dailyChange} from yesterday`}
-        icon="shopping-cart"
-      />
-      <StatsCard
-        title="Today's Quantity"
-        value={String(totalLunch + totalDinner)}
-        description={`Lunches: ${totalLunch}, Dinners: ${totalDinner} | Only on this page`}
-        icon="shopping-cart"
-        plaintext={true}
-        className="text-green-500"
-      />
-      <StatsCard
-        title="Current Month Orders"
-        value={String(ordersCount.currentMonthOrders)}
-        description={`${ordersCount.monthlyChange} from last month`}
-        icon="shopping-cart"
-      />
-      <StatsCard
-        title="Total Orders"
-        value={String(ordersCount.totalOrders)}
-        description={`${ordersCount.yearlyChange} from last year`}
-        icon="credit-card"
-      />
-    </div>
+        <StatsCard
+          title="Today's Orders"
+          value={String(ordersCount.todayOrders)}
+          description={`${ordersCount.dailyChange} from yesterday`}
+          icon="shopping-cart"
+        />
+        <StatsCard
+          title="Today's Quantity"
+          value={String(totalLunch + totalDinner)}
+          description={`Lunches: ${totalLunch}, Dinners: ${totalDinner} | Only on this page`}
+          icon="shopping-cart"
+          plaintext={true}
+          className="text-green-500"
+        />
+        <StatsCard
+          title="Current Month Orders"
+          value={String(ordersCount.currentMonthOrders)}
+          description={`${ordersCount.monthlyChange} from last month`}
+          icon="shopping-cart"
+        />
+        <StatsCard
+          title="Total Orders"
+          value={String(ordersCount.totalOrders)}
+          description={`${ordersCount.yearlyChange} from last year`}
+          icon="credit-card"
+        />
+      </div>
 
       <Card className="w-full overflow-hidden">
         <OrderCardHeader
           onSubmit={onSubmit}
           onUpdate={onUpdate}
-          {...{
-            selectDate,
-            setSelectDate,
-            handlePrevDay,
-            handleNextDay,
-            setDateRange,
-            dateRange,
-            handleResetFilter,
-            form,
-            values,
-            isAddOpen,
-            setIsAddOpen,
-            setValues,
-            setId,
-            setIsEditing,
-            isEditing,
-            filteredCustomers,
-            isLoading,
-            selectedCustomer,
-            setSelectedCustomer,
-          }}
+          selectDate={selectDate}
+          setSelectDate={setSelectDate}
+          handleNextDay={handleNextDay}
+          handlePrevDay={handlePrevDay}
+          setSelectedCustomer={setSelectedCustomer}
+          setDateRange={setDateRange}
+          dateRange={dateRange}
+          handleResetFilter={handleResetFilter}
+          form={form}
+          values={values}
+          isAddOpen={isAddOpen}
+          setIsAddOpen={setIsAddOpen}
+          setValues={setValues}
+          setId={setId}
+          setIsEditing={setIsEditing}
+          isEditing={isEditing}
+          filteredCustomers={filteredCustomers}
+          isLoading={isLoading}
+          selectedCustomer={selectedCustomer}
         />
 
         <OrderCardContent

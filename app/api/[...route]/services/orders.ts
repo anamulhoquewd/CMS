@@ -50,7 +50,7 @@ const DAY_ABBREVIATIONS = ["su", "mo", "tu", "we", "th", "fr", "sa"];
 export function startAutoOrderScheduler() {
   // Run every day at 07:00 (adjust time as needed)
 
-  cron.schedule("0 7 * * *", async () => {
+  cron.schedule("1 7 * * *", async () => {
     try {
       const today = new Date();
       const todayDayAbbr = DAY_ABBREVIATIONS[getDay(today)];
@@ -214,7 +214,7 @@ export const registerOrderService = async (body: {
     customer.amount += totalAmount;
     await customer.save();
 
-    console.log("Order created successfully", docs);
+    console.log("Order created successfully");
 
     // Response
     return {
