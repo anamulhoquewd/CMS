@@ -62,17 +62,6 @@ export function startAutoOrderScheduler() {
         defaultOffDays: { $nin: [todayDayAbbr] },
       });
 
-      console.log(
-        `Found ${customers.length} active customers for ${formattedDate} (${todayDayAbbr})`
-      );
-
-      if (customers.length === 0) {
-        console.log(
-          `No active customers found for ${formattedDate} (${todayDayAbbr})`
-        );
-        return;
-      }
-
       // Create orders for each eligible customer
       await Promise.all(
         customers.map((customer) =>
@@ -82,10 +71,8 @@ export function startAutoOrderScheduler() {
           })
         )
       );
-
-      console.log(`Auto-order generation completed for ${formattedDate}`);
     } catch (error) {
-      console.error("Error in auto-order scheduler:", error);
+      console.error("Error while creating orders automatically: ", error);
     }
   });
 }
@@ -145,7 +132,6 @@ export const registerOrderService = async (body: {
   const bodyValidation = bodySchema.safeParse(body);
 
   if (!bodyValidation.success) {
-    console.log(bodyValidation.error.issues[0].message);
     return {
       error: schemaValidationError(
         bodyValidation.error,
@@ -213,8 +199,6 @@ export const registerOrderService = async (body: {
     // Update customer amount
     customer.amount += totalAmount;
     await customer.save();
-
-    console.log("Order created successfully");
 
     // Response
     return {

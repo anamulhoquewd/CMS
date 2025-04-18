@@ -3,7 +3,12 @@ import { CardContent } from "../ui/card";
 import UsersTable from "../sheared/table";
 import PaginationForTable from "../sheared/paginationToTable";
 
-function PaymentCardContent({ table, columns, pagination, setPagination }: any) {
+function PaymentCardContent({
+  table,
+  columns,
+  pagination,
+  setPagination,
+}: any) {
   return (
     <CardContent>
       <UsersTable table={table} columns={columns} />

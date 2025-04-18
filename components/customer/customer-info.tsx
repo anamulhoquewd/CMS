@@ -64,12 +64,8 @@ export default function CustomerInfo({
         throw new Error(response.data.error.message);
       }
       setIsExpired(false);
-      console.log("Access key regenerated successfully");
     } catch (error) {
-      console.log(
-        "Error regenerating access key. The customer is: " + customer._id
-      );
-      console.error(error);
+      console.error("Error while regenerating access key: ", error);
     }
   };
 
@@ -213,7 +209,7 @@ export default function CustomerInfo({
                       if (isExpired) {
                         handleRegenerateKey();
                       } else {
-                        console.log("Access key is not expired");
+                        alert("Access key is not expired");
                       }
                     }}
                   >

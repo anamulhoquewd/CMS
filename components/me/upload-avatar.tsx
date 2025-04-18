@@ -18,9 +18,7 @@ export function UploadAvatar() {
 
   // Click the input element when the button is clicked
   const inputClickHandler = () => {
-    console.log("inputClickHandler called", fileInputRef);
     if (fileInputRef.current) {
-      console.log("Inside inputClickHandler");
       fileInputRef.current.click();
     }
   };

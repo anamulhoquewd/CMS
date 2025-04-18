@@ -40,4 +40,4 @@ const ISODate: (date?: Date) => string = (date = new Date()) => {
   return localDate.toISOString();
 };
 
-export { shortToLong, logToShort, };
+export { shortToLong, logToShort };

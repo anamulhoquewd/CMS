@@ -39,8 +39,6 @@ const useReset = () => {
       setTimeout(() => {
         router.push("/auth/sign-in");
       }, 5000);
-
-      console.log(response.data.message);
     } catch (error: any) {
       handleAxiosError(error);
 

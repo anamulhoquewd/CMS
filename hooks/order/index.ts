@@ -88,8 +88,6 @@ const useOrder = () => {
         throw new Error(response.data.error.message);
       }
 
-      console.log("Orders fetched successfully");
-
       setOrders(response.data.data || []);
 
       setPagination({
@@ -113,8 +111,6 @@ const useOrder = () => {
       if (!response.data.success) {
         throw new Error(response.data.error.message);
       }
-
-      console.log("Orders counted");
 
       setOrdersCount(response.data.data || 0);
     } catch (error) {
@@ -164,8 +160,6 @@ const useOrder = () => {
         throw new Error(response.data.error.message);
       }
 
-      console.log("Order created successfully");
-
       // Reset form
       form.reset({
         customerId: "",
@@ -186,7 +180,7 @@ const useOrder = () => {
       getOrders({ date: selectDate });
     } catch (error: any) {
       handleAxiosError(error);
-      console.log("Error creating order", error);
+      console.log("Error while creating order", error);
 
       // Set error message
       if (error.response && error.response.data) {
@@ -216,8 +210,6 @@ const useOrder = () => {
       if (!response.data.success) {
         throw new Error(response.data.error.message);
       }
-
-      console.log("Order updated successfully");
 
       // Reset form
       form.reset({
@@ -276,8 +268,6 @@ const useOrder = () => {
       if (!response.data.success) {
         throw new Error(response.data.error.message);
       }
-
-      console.log("Order deleted successfully");
 
       // Close delete modal
       setIsDelOpen(false);

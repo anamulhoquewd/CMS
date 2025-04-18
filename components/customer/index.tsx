@@ -92,8 +92,6 @@ export default function CustomerProfile() {
         throw new Error(response.data.error.message);
       }
 
-      console.log("Customer fetched successfully");
-
       const data = response.data.data;
       setSelf(data.customer);
       setOrders(data.orders.data);
@@ -129,8 +127,6 @@ export default function CustomerProfile() {
       if (!response.data.success) {
         throw new Error(response.data.error.message);
       }
-
-      console.log("Orders counted");
 
       setOrdersCount(response.data.data);
     } catch (error) {

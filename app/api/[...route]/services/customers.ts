@@ -658,7 +658,6 @@ export const customerAccessService = async ({
   // Validate access key
   const keyValidation = keySchema.safeParse({ key });
   if (!keyValidation.success) {
-    console.log(keyValidation.error);
     return {
       error: schemaValidationError(
         keyValidation.error,

@@ -16,7 +16,7 @@ const useAvatar = () => {
           setUser(response.data.data);
         }
       } catch (error: any) {
-        console.warn(error);
+        console.warn("Error while fetching user", error);
       }
     };
 
@@ -63,7 +63,6 @@ const useAvatar = () => {
 
       setIsAvatarOpen(false);
     } catch (error: any) {
-      console.log("Error uploading avatar", error);
       if (!error.response.data.success) {
         setError(error.response.data.fields[0].message);
       }

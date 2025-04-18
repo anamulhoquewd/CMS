@@ -62,8 +62,6 @@ const useCustomer = () => {
         throw new Error(response.data.error.message);
       }
 
-      console.log("Customers fetched successfully");
-
       setCustomers(response.data.data || []);
 
       setPagination(() => ({
@@ -90,8 +88,6 @@ const useCustomer = () => {
         throw new Error(response.data.error.message);
       }
 
-      console.log("Customers counted");
-
       setCustomersCount(response.data.data || 0);
     } catch (error) {
       handleAxiosError(error);
@@ -109,8 +105,6 @@ const useCustomer = () => {
       if (!response.data.success) {
         throw new Error(response.data.error.message);
       }
-
-      console.log("Customer fetched successfully");
 
       return response.data.data;
     } catch (error) {
@@ -150,8 +144,6 @@ const useCustomer = () => {
       if (!response.data.success) {
         throw new Error(response.data.error.message);
       }
-
-      console.log("Customer created successfully");
 
       // Reset form
       form.reset({
@@ -210,8 +202,6 @@ const useCustomer = () => {
       if (!response.data.success) {
         throw new Error(response.data.error.message);
       }
-
-      console.log("Customer updated successfully");
 
       // Reset form
       form.reset({
@@ -274,8 +264,6 @@ const useCustomer = () => {
         throw new Error(response.data.error.message);
       }
 
-      console.log("Customer deleted successfully");
-
       // Close delete modal
       setIsDelOpen(false);
 
@@ -284,7 +272,7 @@ const useCustomer = () => {
     } catch (error: any) {
       const res = handleAxiosError(error);
 
-      console.error("Error deleting customer:", res.message);
+      console.error("Error while deleting customer:", res.message);
     } finally {
       // Loading spinner end
       setIsLoading(false);

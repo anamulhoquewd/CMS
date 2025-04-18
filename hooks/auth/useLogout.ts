@@ -14,13 +14,10 @@ function useLogout() {
         throw new Error(response.data.error.message);
       }
 
-      console.log("Logout successful");
-      removeStorage("accessToken");
-
       // Redirect to sign in page
       router.push("/auth/sign-in");
     } catch (error: any) {
-      console.warn(error);
+      console.warn("Error while logging out", error);
     }
   }, []);
 

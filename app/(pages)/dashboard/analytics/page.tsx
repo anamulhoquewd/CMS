@@ -1,11 +1,17 @@
-import type { Metadata } from "next"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import type { Metadata } from "next";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const metadata: Metadata = {
   title: "Analytics",
   description: "Business analytics and insights",
-}
+};
 
 export default function AnalyticsPage() {
   return (
@@ -21,29 +27,31 @@ export default function AnalyticsPage() {
           <Card>
             <CardHeader>
               <CardTitle>Revenue Overview</CardTitle>
-              <CardDescription>Compare order, payment, and customer revenue</CardDescription>
+              <CardDescription>
+                Compare order, payment, and customer revenue
+              </CardDescription>
             </CardHeader>
-            <CardContent className="pl-2">
-              {/* <RevenueChart /> */}
-            </CardContent>
+            <CardContent className="pl-2">{/* <RevenueChart /> */}</CardContent>
           </Card>
         </TabsContent>
         <TabsContent value="orders" className="space-y-4">
           <Card>
             <CardHeader>
               <CardTitle>Order Analytics</CardTitle>
-              <CardDescription>Monthly order trends and comparison</CardDescription>
+              <CardDescription>
+                Monthly order trends and comparison
+              </CardDescription>
             </CardHeader>
-            <CardContent className="pl-2">
-              {/* <Overview /> */}
-            </CardContent>
+            <CardContent className="pl-2">{/* <Overview /> */}</CardContent>
           </Card>
         </TabsContent>
         <TabsContent value="customers" className="space-y-4">
           <Card>
             <CardHeader>
               <CardTitle>Customer Growth</CardTitle>
-              <CardDescription>Monthly customer acquisition and retention</CardDescription>
+              <CardDescription>
+                Monthly customer acquisition and retention
+              </CardDescription>
             </CardHeader>
             <CardContent className="pl-2">
               {/* <CustomerGrowthChart /> */}
@@ -63,6 +71,5 @@ export default function AnalyticsPage() {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }
-

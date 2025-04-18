@@ -47,11 +47,6 @@ const customerSchemaZod = z
     }
   );
 
-// 🔹 Mongoose Schema
-interface ICustomer extends z.infer<typeof customerSchemaZod> {}
-
-console.log();
-
 // 🔹 Mongoose Document
 interface ICustomerDoc extends Document {
   name: string;
@@ -119,7 +114,6 @@ customerSchema.methods.generateAccessKey = function (days: number = 30) {
 customerSchema.pre("save", function (next) {
   const validation = customerSchemaZod.safeParse(this.toObject());
   if (!validation.success) {
-    console.log(`Error on field: ${validation.error.issues[0].path[0]}`);
     return next(new Error(validation.error.issues[0].message));
   }
   next();

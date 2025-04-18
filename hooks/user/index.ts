@@ -60,8 +60,6 @@ const useUser = () => {
         throw new Error(response.data.error.message);
       }
 
-      console.log("Users fetched successfully");
-
       setUsers(response.data.data || []);
 
       setPagination(() => ({
@@ -120,8 +118,6 @@ const useUser = () => {
         throw new Error(response.data.error.message);
       }
 
-      console.log("Users created successfully");
-
       // Reset form
       form.reset({
         name: "",
@@ -143,7 +139,7 @@ const useUser = () => {
       getUsers();
     } catch (error: any) {
       handleAxiosError(error);
-      console.log("error in create user", error);
+      console.log("Error while creating users", error);
 
       // Set form errors
       if (error.response && error.response.data) {
@@ -174,8 +170,6 @@ const useUser = () => {
       if (!response.data.success) {
         throw new Error(response.data.error.message);
       }
-
-      console.log("Users updated successfully");
 
       // Reset form
       form.reset();
@@ -230,8 +224,6 @@ const useUser = () => {
         throw new Error(response.data.error.message);
       }
 
-      console.log("Users deleted successfully");
-
       // Close delete modal
       setIsDelOpen(false);
 
@@ -240,7 +232,7 @@ const useUser = () => {
     } catch (error: any) {
       const res = handleAxiosError(error);
 
-      console.error("Error deleting Users:", res.message);
+      console.error("Error while deleting user:", res.message);
     } finally {
       // Loading spinner end
       setIsLoading(false);

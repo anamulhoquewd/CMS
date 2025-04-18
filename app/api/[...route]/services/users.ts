@@ -393,14 +393,12 @@ export const updateUserService = async ({
   // Validate ID
   const idValidation = idSchema.safeParse({ id });
   if (!idValidation.success) {
-    console.log(idValidation.error);
     return { error: schemaValidationError(idValidation.error, "Invalid ID") };
   }
 
   // Validate Body
   const bodyValidation = bodySchema.safeParse(body);
   if (!bodyValidation.success) {
-    console.log(bodyValidation.error);
     return {
       error: schemaValidationError(
         bodyValidation.error,

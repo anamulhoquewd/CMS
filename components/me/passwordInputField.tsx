@@ -65,35 +65,35 @@ const PasswordInputField = ({
   );
 };
 
- const ProfileDataInputField = ({
-    form,
-    name,
-    label,
-    placeholder,
-    disabled,
-  }: {
-    form: any;
-    name: string;
-    label: string;
-    placeholder: string;
-    disabled: boolean;
-  }) => {
-    return (
-      <FormField
-        control={form.control}
-        name={name}
-        disabled={disabled}
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel className="cursor-pointer">{label}</FormLabel>
-            <FormControl>
-              <Input placeholder={placeholder} {...field} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-    );
-  };
+const ProfileDataInputField = ({
+  form,
+  name,
+  label,
+  placeholder,
+  disabled,
+}: {
+  form: any;
+  name: string;
+  label: string;
+  placeholder: string;
+  disabled: boolean;
+}) => {
+  return (
+    <FormField
+      control={form.control}
+      name={name}
+      disabled={disabled}
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel className="cursor-pointer">{label}</FormLabel>
+          <FormControl>
+            <Input placeholder={placeholder} {...field} />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+  );
+};
 
 export { PasswordInputField, ProfileDataInputField };

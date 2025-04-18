@@ -47,8 +47,6 @@ const usePayment = () => {
         throw new Error(response.data.error.message);
       }
 
-      console.log("Payments fetched successfully");
-
       setPayments(response.data.data || []);
 
       setPagination({
@@ -73,8 +71,6 @@ const usePayment = () => {
       if (!response.data.success) {
         throw new Error(response.data.error.message);
       }
-
-      console.log("Payments counted");
 
       setPaymentsCount(response.data.data || 0);
     } catch (error) {
@@ -126,8 +122,6 @@ const usePayment = () => {
         throw new Error(response.data.error.message);
       }
 
-      console.log("Payment created successfully");
-
       // Reset form
       form.reset({
         customerId: "",
@@ -174,8 +168,6 @@ const usePayment = () => {
     // Loading spinner start
     setIsLoading(true);
 
-    console.log("Form Values: ", form.getValues());
-
     try {
       const response = await api.put(`/payments/${paymentId}`, {
         amount: form.getValues().amount,
@@ -198,8 +190,6 @@ const usePayment = () => {
       if (!response.data.success) {
         throw new Error(response.data.error.message);
       }
-
-      console.log("Payment updated successfully");
 
       // Reset form
       form.reset({
@@ -261,8 +251,6 @@ const usePayment = () => {
       if (!response.data.success) {
         throw new Error(response.data.error.message);
       }
-
-      console.log("Order deleted successfully");
 
       // Close delete modal
       setIsDelOpen(false);

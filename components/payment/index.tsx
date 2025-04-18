@@ -1,8 +1,6 @@
 "use client";
 
-import {
-  Card,
-} from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import usePayment from "@/hooks/payment";
 import { paymentColumns } from "../sheared/column";
 import {
@@ -88,33 +86,33 @@ function Index() {
   return (
     <>
       <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-      <StatsCard
-        title="Total Transactions"
-        value={String(paymentsCount.totalTransactions)}
-        description={`${paymentsCount.monthlyTransaction} from last month`}
-        icon="credit-card"
-      />
-      <StatsCard
-        title="This Month's Revenue"
-        value={String(paymentsCount.thisMonthAmounts)}
-        description={`${paymentsCount.yearlyTransaction} from last year`}
-        icon="credit-card"
-      />
-      <StatsCard
-        title="This Year's Revenue"
-        value={String(paymentsCount.thisYearAmounts)}
-        description="This Year's Revenue"
-        icon="credit-card"
-        plaintext={true}
-      />
-      <StatsCard
-        title="Total Revenue"
-        value={String(paymentsCount.totalAmounts)}
-        description="Total Revenue"
-        icon="credit-card"
-        plaintext={true}
-      />
-    </div>
+        <StatsCard
+          title="Total Transactions"
+          value={String(paymentsCount.totalTransactions)}
+          description={`${paymentsCount.monthlyTransaction} from last month`}
+          icon="credit-card"
+        />
+        <StatsCard
+          title="This Month's Revenue"
+          value={String(paymentsCount.thisMonthAmounts)}
+          description={`${paymentsCount.yearlyTransaction} from last year`}
+          icon="credit-card"
+        />
+        <StatsCard
+          title="This Year's Revenue"
+          value={String(paymentsCount.thisYearAmounts)}
+          description="This Year's Revenue"
+          icon="credit-card"
+          plaintext={true}
+        />
+        <StatsCard
+          title="Total Revenue"
+          value={String(paymentsCount.totalAmounts)}
+          description="Total Revenue"
+          icon="credit-card"
+          plaintext={true}
+        />
+      </div>
 
       <Card>
         <PaymentCardHeader

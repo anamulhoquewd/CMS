@@ -14,7 +14,7 @@ function useGetMe() {
           setUser(response.data.data);
         }
       } catch (error: any) {
-        console.warn(error);
+        console.warn("Error while ", error);
       }
     };
 

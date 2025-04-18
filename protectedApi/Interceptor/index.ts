@@ -28,7 +28,6 @@ api.interceptors.response.use(
         const newAccessToken = await refreshToken();
 
         if (newAccessToken) {
-          // console.log("Token refreshed");
           originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
           return api(originalRequest);
         }
@@ -37,8 +36,6 @@ api.interceptors.response.use(
 
         return Promise.reject(new Error("Session expired please login again"));
       } catch (refreshError) {
-        // console.error("Failed to refresh token", refreshError);
-
         removeStorage("accessToken");
 
         return Promise.reject(refreshError);
@@ -64,8 +61,8 @@ const refreshToken = async () => {
       return response.data.tokens.accessToken;
     }
     return null;
-  } catch (e) {
-    console.error("Failed to refresh token: ", e);
+  } catch (error) {
+    console.error("Failed to refresh token: ", error);
     return null;
   }
 };

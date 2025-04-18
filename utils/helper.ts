@@ -9,8 +9,8 @@ export function decodeJwtPayload(token: string) {
     );
 
     return JSON.parse(jsonPayload);
-  } catch (e) {
-    console.error("Invalid token format", e);
+  } catch (error) {
+    console.error("Invalid token format", error);
     return null;
   }
 }
