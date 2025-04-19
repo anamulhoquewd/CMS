@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
-type PaymentStatusType = "paid" | "partially_paid" | "pending";
+type PaymentStatusType = "paid" | "partially_paid" | "pending" | "";
 
 interface PaymentStatusBadgeProps {
   status: PaymentStatusType;

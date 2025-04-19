@@ -18,7 +18,6 @@ import {
   subMonths,
   subYears,
 } from "date-fns";
-import cron from "node-cron";
 
 interface GetOrderServiceProps {
   page: number;
@@ -35,47 +34,44 @@ interface GetOrderServiceProps {
 // Day mapping (0-6 = Sunday-Saturday)
 const DAY_ABBREVIATIONS = ["su", "mo", "tu", "we", "th", "fr", "sa"];
 
-/**
- * Cron expression format
- * - * * * * * *
- * - | | | | | |
- * - | | | | | +-- Day of week (0-6) (Sunday=0)
- * - | | | | +---- Month (1-12)
- * - | | | +------ Day of month (1-31)
- * - | | +-------- Hour (0-23)
- * - | +---------- Minute (0-59)
- * +------------ Second (0-59, optional)
- */
+export const startAutoOrderScheduler = async () => {
+  try {
+    const today = new Date();
+    const todayDayAbbr = DAY_ABBREVIATIONS[getDay(today)];
+    const formattedDate = format(today, "yyyy-MM-dd");
 
-export function startAutoOrderScheduler() {
-  // Run every day at 07:00 (adjust time as needed)
+    // Find all active customers where today is not an off day
+    const customers = await Customer.find({
+      active: true,
+      defaultOffDays: { $nin: [todayDayAbbr] },
+    });
 
-  cron.schedule("1 7 * * *", async () => {
-    try {
-      const today = new Date();
-      const todayDayAbbr = DAY_ABBREVIATIONS[getDay(today)];
-      const formattedDate = format(today, "yyyy-MM-dd");
+    // Create orders for each eligible customer
+    await Promise.all(
+      customers.map((customer) =>
+        registerOrderService({
+          customerId: (customer._id as string).toString(),
+          date: formattedDate,
+        })
+      )
+    );
 
-      // Find all active customers where today is not an off day
-      const customers = await Customer.find({
-        active: true,
-        defaultOffDays: { $nin: [todayDayAbbr] },
-      });
-
-      // Create orders for each eligible customer
-      await Promise.all(
-        customers.map((customer) =>
-          registerOrderService({
-            customerId: (customer._id as string).toString(),
-            date: formattedDate,
-          })
-        )
-      );
-    } catch (error) {
-      console.error("Error while creating orders automatically: ", error);
-    }
-  });
-}
+    return {
+      success: {
+        success: true,
+        message: "Orders created successfully",
+      },
+    };
+  } catch (error: any) {
+    return {
+      serverError: {
+        success: false,
+        message: error.message,
+        stack: process.env.NODE_ENV === "production" ? null : error.stack,
+      },
+    };
+  }
+};
 
 export const registerOrderService = async (body: {
   customerId: string;

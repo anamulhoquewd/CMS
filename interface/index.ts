@@ -27,8 +27,8 @@ export interface CustomerSchema {
   defaultQuantity: number;
   defaultItem: "lunch" | "dinner" | "lunch&dinner";
   defaultOffDays: string[];
-  paymentStatus: "paid" | "partially_paid" | "pending";
-  paymentSystem: "weekly" | "monthly";
+  paymentStatus: "paid" | "partially_paid" | "pending" | "";
+  paymentSystem: "weekly" | "monthly" | "";
   active: boolean;
   createdAt: Date;
   accessKey: string;

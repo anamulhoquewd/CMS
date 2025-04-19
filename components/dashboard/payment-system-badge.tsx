@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
-type PaymentSystemType = "monthly" | "weekly";
+type PaymentSystemType = "monthly" | "weekly" | "";
 
 interface PaymentSystemBadgeProps {
   system: PaymentSystemType;

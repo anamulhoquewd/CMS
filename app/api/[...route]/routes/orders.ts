@@ -6,7 +6,10 @@ const orders = new Hono();
 // 🔹 Get All orders (Private)
 orders.get("/", protect, (c) => order.getOrders(c));
 
-//
+// 🔹 Generate orders every day
+orders.post("/generate", protect, (c) => order.generateOrders(c));
+
+// 🔹 Count how many orders I have.
 orders.get("/count", protect, (c) => order.getOrderCount(c));
 
 // 🔹 Create Order (Private)

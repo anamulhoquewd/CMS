@@ -149,7 +149,6 @@ function Index() {
                   defaultPrice: 0,
                   defaultQuantity: 1,
                   defaultOffDays: [],
-                  paymentStatus: "",
                   defaultItem: "",
                   paymentSystem: "",
                   active: true,

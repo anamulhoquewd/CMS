@@ -104,6 +104,17 @@ const useOrder = () => {
     }
   };
 
+  const generateOrders = useCallback(async () => {
+    try {
+      await api.post("/orders/generate");
+
+      await getOrders({ date: selectDate });
+    } catch (error: any) {
+      handleAxiosError(error);
+      console.log("Error while creating order", error);
+    }
+  }, []);
+
   const getOrdersCount = async () => {
     try {
       const response = await api.get("/orders/count");
@@ -352,14 +363,14 @@ const useOrder = () => {
         return total + order.quantity;
       }
       return total;
-    }, lunchesAndDinners / 2);
+    }, (lunchesAndDinners * 2) / 2);
 
     const dinners = orders.reduce((total, order) => {
       if (order.item === "dinner") {
         return total + order.quantity;
       }
       return total;
-    }, lunchesAndDinners / 2);
+    }, (lunchesAndDinners * 2) / 2);
 
     setTotalDinner(dinners);
     setTotalLunch(lunches);
@@ -418,6 +429,7 @@ const useOrder = () => {
     ordersCount,
     totalLunch,
     totalDinner,
+    generateOrders,
   };
 };
 

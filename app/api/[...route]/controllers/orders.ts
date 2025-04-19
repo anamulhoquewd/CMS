@@ -8,6 +8,7 @@ import {
   updateOrderService,
   deleteOrderService,
   getOrdersCountService,
+  startAutoOrderScheduler,
 } from "../services";
 
 // 🔹Get all orders
@@ -43,6 +44,17 @@ const getOrders = async (c: Context) => {
   if (response.error) {
     return badRequestHandler(c, response.error);
   }
+
+  if (response.serverError) {
+    return serverErrorHandler(c, response.serverError);
+  }
+
+  return c.json(response.success, 200);
+};
+
+// 🔹 Generate orders
+const generateOrders = async (c: Context) => {
+  const response = await startAutoOrderScheduler();
 
   if (response.serverError) {
     return serverErrorHandler(c, response.serverError);
@@ -146,4 +158,5 @@ export {
   updateOrder,
   deleteOrder,
   getOrderCount,
+  generateOrders,
 };

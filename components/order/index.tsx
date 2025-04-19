@@ -64,6 +64,7 @@ function Index() {
     ordersCount,
     totalLunch,
     totalDinner,
+    generateOrders,
   } = useOrder();
 
   const columns = orderColumns({
@@ -154,6 +155,7 @@ function Index() {
           filteredCustomers={filteredCustomers}
           isLoading={isLoading}
           selectedCustomer={selectedCustomer}
+          generateOrders={generateOrders}
         />
 
         <OrderCardContent

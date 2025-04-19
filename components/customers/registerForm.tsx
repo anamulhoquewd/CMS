@@ -249,37 +249,6 @@ export default function RegistrationForm({
 
         <FormField
           control={form.control}
-          name="paymentStatus"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="cursor-pointer">Payment Status</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl className="w-full">
-                  <SelectTrigger className="cursor-pointer">
-                    <SelectValue
-                      placeholder={`${field.value || "Select payment status"}`}
-                    />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  <SelectItem className="cursor-pointer" value="paid">
-                    Paid
-                  </SelectItem>
-                  <SelectItem className="cursor-pointer" value="partially_paid">
-                    Partially Paid
-                  </SelectItem>
-                  <SelectItem className="cursor-pointer" value="pending">
-                    Pending
-                  </SelectItem>
-                </SelectContent>
-              </Select>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
           name="paymentSystem"
           render={({ field }) => (
             <FormItem>
