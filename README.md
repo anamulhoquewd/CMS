@@ -125,5 +125,3 @@ Currently, this is a solo project. But if you’d like to contribute or suggest 
 ---
 
 **_Thank you for visiting this project and I hope you find it useful!_**
-
-> > > > > > > master
