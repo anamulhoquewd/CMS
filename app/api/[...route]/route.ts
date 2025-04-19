@@ -7,6 +7,7 @@ import { notFound, protect } from "./middlewares";
 import { users, customers, orders, payments } from "./routes";
 import { user } from "./controllers";
 import { superAdminService } from "./services";
+import { startAutoOrderScheduler } from "./services/orders";
 import { handle } from "hono/vercel";
 
 export const runtime = "nodejs";
@@ -43,6 +44,9 @@ app.use(
     allowHeaders: ["Content-Type", "Authorization"], // Allow necessary headers
   })
 );
+
+// ⏰ Start the scheduler every day at 07:01 AM (adjust time as needed)
+startAutoOrderScheduler();
 
 // 🔹 Health check
 app.get("/health", (c) => c.text("API is healthy!"));

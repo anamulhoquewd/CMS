@@ -32,7 +32,6 @@ import {
   updateOrderService,
   deleteOrderService,
   getOrdersCountService,
-  startAutoOrderScheduler,
 } from "./orders";
 import {
   deletePaymentService,
@@ -79,5 +78,4 @@ export {
   getCustomerIdsService,
   getOrdersCountService,
   getPaymentCountService,
-  startAutoOrderScheduler,
 };

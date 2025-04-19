@@ -104,17 +104,6 @@ const useOrder = () => {
     }
   };
 
-  const generateOrders = useCallback(async () => {
-    try {
-      await api.post("/orders/generate");
-
-      await getOrders({ date: selectDate });
-    } catch (error: any) {
-      handleAxiosError(error);
-      console.log("Error while creating order", error);
-    }
-  }, []);
-
   const getOrdersCount = async () => {
     try {
       const response = await api.get("/orders/count");
@@ -429,7 +418,6 @@ const useOrder = () => {
     ordersCount,
     totalLunch,
     totalDinner,
-    generateOrders,
   };
 };
 

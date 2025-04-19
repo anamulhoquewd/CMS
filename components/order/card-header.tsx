@@ -44,7 +44,6 @@ interface Props {
   isLoading: boolean;
   selectedCustomer: any;
   setSelectedCustomer: React.Dispatch<React.SetStateAction<any>>;
-  generateOrders: () => void;
 }
 
 function OrderCardHeader({
@@ -69,7 +68,6 @@ function OrderCardHeader({
   isLoading,
   selectedCustomer,
   setSelectedCustomer,
-  generateOrders,
 }: Props) {
   return (
     <CardHeader className="flex flex-col sm:flex-row items-start justify-between gap-3 sm:flex-wrap space-y-0">
@@ -114,7 +112,7 @@ function OrderCardHeader({
 
       <div className="flex flex-wrap items-center gap-2 sm:gap-4">
         {/* filter with date range */}
-        <div className="flex items-center w-fit gap-2">
+        <div className="flex items-center justify-between w-fit gap-8 sm:gap-2">
           <Popover>
             <PopoverTrigger>
               <Button
@@ -161,14 +159,6 @@ function OrderCardHeader({
             onClick={handleResetFilter}
           >
             <span>Reset</span>
-          </Button>
-          <Button
-            id="date"
-            variant={"outline"}
-            className={"w-fit cursor-pointer"}
-            onClick={generateOrders}
-          >
-            <span>Generate</span>
           </Button>
         </div>
 
